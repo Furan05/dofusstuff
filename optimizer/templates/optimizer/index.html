@@ -1,0 +1,40 @@
+{% extends 'optimizer/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-2xl font-bold mb-6">Optimiseur de Stuff Dofus</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-4">Informations de base</h2>
+                {{ form.character_class|as_crispy_field }}
+                {{ form.level|as_crispy_field }}
+            </div>
+
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-4">Caractéristiques Primaires</h2>
+                <div class="grid grid-cols-3 gap-4">
+                    {{ form.primary_stats|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-4">Caractéristiques Secondaires</h2>
+                <div class="grid grid-cols-3 gap-4">
+                    {{ form.secondary_stats|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Générer le meilleur stuff
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
